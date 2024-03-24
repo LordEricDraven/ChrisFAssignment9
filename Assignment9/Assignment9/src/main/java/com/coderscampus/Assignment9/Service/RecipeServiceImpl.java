@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coderscampus.Assignment9.Recipe;
@@ -15,6 +16,11 @@ import com.coderscampus.Assignment9.Recipe;
 @Service
 public class RecipeServiceImpl implements RecipeService{
 	List<Recipe> recipes = new ArrayList<>();
+	
+	@Autowired
+	public RecipeServiceImpl() {
+		recipes = ingestRecipe();
+	}
 	
 	@Override
 	public List<Recipe> ingestRecipe(){
@@ -40,26 +46,25 @@ public class RecipeServiceImpl implements RecipeService{
 
 	@Override
 	public List<Recipe> getGlutenFreeRecipes() {
-		// TODO Auto-generated method stub
-		return ingestRecipe().stream().filter(Recipe::getGlutenFree).collect(Collectors.toList());
+		return recipes.stream().filter(Recipe::getGlutenFree).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<Recipe> getVeganRecipes() {
 		// TODO Auto-generated method stub
-		return ingestRecipe().stream().filter(Recipe::getVegan).collect(Collectors.toList());
+		return recipes.stream().filter(Recipe::getVegan).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<Recipe> getVegetarianRecipes() {
 		// TODO Auto-generated method stub
-		return ingestRecipe().stream().filter(Recipe::getVegetarian).collect(Collectors.toList());
+		return recipes.stream().filter(Recipe::getVegetarian).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<Recipe> getVeganAndGlutenFreeRecipes() {
 		// TODO Auto-generated method stub
-		return ingestRecipe().stream().filter(r -> r.getVegan() && r.getGlutenFree()).collect(Collectors.toList());
+		return recipes.stream().filter(r -> r.getVegan() && r.getGlutenFree()).collect(Collectors.toList());
 	}
 
 	private Recipe createRecipeFromFile(CSVRecord csvRecord) {
@@ -80,8 +85,5 @@ public class RecipeServiceImpl implements RecipeService{
 		recipe.setVegetarian(Boolean.parseBoolean(csvRecord.get("Vegetarian").trim()));
 		
 		return recipe;
-		
 	}
-	
-	
 }

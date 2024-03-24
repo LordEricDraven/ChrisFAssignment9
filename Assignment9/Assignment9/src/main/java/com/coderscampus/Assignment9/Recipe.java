@@ -87,10 +87,4 @@ public class Recipe {
 	public void setVegetarian(Boolean vegetarian) {
 		this.vegetarian = vegetarian;
 	}
-	
-	
-	
-	
-	
-	
 }
