@@ -37,6 +37,6 @@ public class RecipeController {
 	
 	@GetMapping("/all-recipes")
 	public List<Recipe> getAllRecipes(){
-		return recipeService.ingestRecipe();
+		return recipeService.getAllRecipes();
 	}
 }

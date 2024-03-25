@@ -8,7 +8,7 @@ public interface RecipeService {
 
 	
 	
-	
+	List<Recipe> getAllRecipes();
 	List<Recipe> ingestRecipe();
 	List<Recipe> getGlutenFreeRecipes();
 	List<Recipe> getVeganRecipes();

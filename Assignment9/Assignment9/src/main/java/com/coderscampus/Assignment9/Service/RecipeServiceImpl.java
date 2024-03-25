@@ -45,6 +45,11 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
+	public List<Recipe> getAllRecipes(){
+		return recipes;
+	}
+	
+	@Override
 	public List<Recipe> getGlutenFreeRecipes() {
 		return recipes.stream().filter(Recipe::getGlutenFree).collect(Collectors.toList());
 	}
@@ -86,4 +91,6 @@ public class RecipeServiceImpl implements RecipeService{
 		
 		return recipe;
 	}
+
+
 }
